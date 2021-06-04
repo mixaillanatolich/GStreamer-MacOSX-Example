@@ -15,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        gst_init(nil, nil);
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

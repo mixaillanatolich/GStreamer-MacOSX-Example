@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="GStreamer_MacOSX_Example" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,15 +704,88 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="GStreamer_MacOSX_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Sy-x6-8S0">
+                                <rect key="frame" x="0.0" y="61" width="800" height="539"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="U2N-eX-h0D"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NMx-K3-LT5">
+                                <rect key="frame" x="13" y="14" width="84" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="9u5-ke-eiB"/>
+                                    <constraint firstAttribute="height" constant="20" id="pjP-NH-QcS"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Init GST" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NRv-Gq-1nR">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="gstInitButtonClicked:" target="XfG-lQ-9wD" id="mUh-81-rDy"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="txR-l0-1XI">
+                                <rect key="frame" x="104" y="14" width="60" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="aDK-T7-BOB"/>
+                                    <constraint firstAttribute="height" constant="20" id="imn-b8-hX1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9k6-PK-xQM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="playButtonClicked:" target="XfG-lQ-9wD" id="Amu-yo-Uue"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cmm-3p-t86">
+                                <rect key="frame" x="160" y="14" width="72" height="32"/>
+                                <buttonCell key="cell" type="push" title="Pause" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Oc9-uw-EuH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pauseButtonClicked:" target="XfG-lQ-9wD" id="Nei-lL-VXS"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T5N-d2-Xu8">
+                                <rect key="frame" x="233" y="24" width="37" height="16"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="NO1-ra-eKk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="cmm-3p-t86" firstAttribute="centerY" secondItem="NMx-K3-LT5" secondAttribute="centerY" id="BPE-cK-pPr"/>
+                            <constraint firstItem="T5N-d2-Xu8" firstAttribute="baseline" secondItem="cmm-3p-t86" secondAttribute="baseline" id="HL8-Jr-T5b"/>
+                            <constraint firstItem="7Sy-x6-8S0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="J3z-rD-HPy"/>
+                            <constraint firstItem="txR-l0-1XI" firstAttribute="centerY" secondItem="NMx-K3-LT5" secondAttribute="centerY" id="Jjf-SB-hif"/>
+                            <constraint firstItem="7Sy-x6-8S0" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Rcf-WG-gii"/>
+                            <constraint firstAttribute="bottom" secondItem="NMx-K3-LT5" secondAttribute="bottom" constant="21" id="Tk8-eL-pQ8"/>
+                            <constraint firstItem="txR-l0-1XI" firstAttribute="leading" secondItem="NMx-K3-LT5" secondAttribute="trailing" constant="21" id="bYy-Ii-il1"/>
+                            <constraint firstItem="T5N-d2-Xu8" firstAttribute="leading" secondItem="cmm-3p-t86" secondAttribute="trailing" constant="10" id="cCt-mz-vCb"/>
+                            <constraint firstAttribute="trailing" secondItem="7Sy-x6-8S0" secondAttribute="trailing" id="f3B-aP-JUG"/>
+                            <constraint firstItem="cmm-3p-t86" firstAttribute="leading" secondItem="txR-l0-1XI" secondAttribute="trailing" constant="10" id="gWP-tJ-Db1"/>
+                            <constraint firstItem="NMx-K3-LT5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="mlV-r1-ikf"/>
+                            <constraint firstAttribute="bottom" secondItem="7Sy-x6-8S0" secondAttribute="bottom" constant="61" id="tmK-ZE-6xn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gstInitButton" destination="NMx-K3-LT5" id="GoI-bQ-9iR"/>
+                        <outlet property="imgView" destination="7Sy-x6-8S0" id="NUc-fv-Azf"/>
+                        <outlet property="messageLabel" destination="T5N-d2-Xu8" id="vTc-af-xg0"/>
+                        <outlet property="pauseButton" destination="cmm-3p-t86" id="kBR-IE-pwe"/>
+                        <outlet property="playButton" destination="txR-l0-1XI" id="pNg-1z-LVY"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="870"/>
         </scene>
     </scenes>
 </document>
